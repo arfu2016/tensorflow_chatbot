@@ -58,6 +58,11 @@ def get_config(config_file='seq2seq.ini'):
 # We use a number of buckets and pad to the closest one for efficiency.
 # See seq2seq_model.Seq2SeqModel for details of how they work.
 _buckets = [(5, 10), (10, 15), (20, 25), (40, 50)]
+# the first element of the tuple is for encoder question length, when the sample length 
+# is less than 5, 10, 20 or 40, the sentences will pad to the value, if the sample 
+# length is more than 5, 10, 20 or 40, the sentence will be truncated.
+# the second element of the tuple is for decoder answer length, the sample will pad to 
+# 10, 15, 25 or 50, or the sample will be truncated.
 
 
 def read_data(source_path, target_path, max_size=None):
